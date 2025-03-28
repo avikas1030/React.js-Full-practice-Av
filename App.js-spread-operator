@@ -1,0 +1,72 @@
+import React from "react";
+import { useState } from "react";
+const App = () => {
+  const studentList1 = ["AV1", "Av2"];
+  const studentList2 = ["Av3", "Av4"];
+  const allStuList = [...studentList1, ...studentList2];
+  console.log(allStuList);
+  const mark1 = {
+    phy: 10,
+    che: 20,
+  };
+  const mark2 = {
+    eng: 30,
+    hindi: 40,
+    math: 50,
+  };
+  const allmark = { ...mark1, ...mark2 };
+  console.log(allmark);
+  const [List, setList] = useState("");
+  const [data, setData] = useState([]);
+  const addlist = ()=>{
+    setData([...data, List])
+  }
+  return (
+    <div
+      style={{
+        backgroundColor: "white",
+        padding: 48,
+        width: "100%",
+        margin: "0 auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: "35px",
+      }}
+    >
+      <div>
+        <h1>Dynamic List (Using useState and array)</h1>
+        <input
+          onChange={(e)=>setList(e.target.value)}
+          placeholder="Enter Product Name"
+          style={{
+            border: "1px solid #ccc",
+            width: 300,
+            padding: 11,
+            borderRadius: 5,
+          }}
+        />
+        <button
+          onClick={addlist}
+          style={{
+            border: "none",
+            background: "darkorange",
+            width: 80,
+            padding: 12,
+            borderRadius: 5,
+            marginLeft: 10,
+          }}
+        >
+          Add
+        </button>
+      </div>
+      <div>
+        {
+          data.map((item, index)=>(
+            <li key={index}>{item}</li>
+          ))
+        }
+      </div>
+    </div>
+  );
+};
+export default App;
