@@ -1,0 +1,37 @@
+import React from "react";
+import { useState } from "react";
+const App = ()=>{
+  const [stu, setStu] = useState([
+    "AV"
+  ])
+  const deleteData = (index)=>{
+    const copyOfArray = [...stu]
+    copyOfArray.splice(index, 1)
+    setStu(copyOfArray)
+  }
+  const [value, setValue] = useState("")
+  const createList = ()=>{
+    setStu([
+      ...stu, value
+    ])
+  }
+  return(
+    <div>
+      <h1>AnanyaVikas</h1>
+      <ul>
+        {
+          stu.map((item, index)=>(
+            <li key={index}>
+              {item}
+              <button onClick={()=>(deleteData(index))}>Delete</button>
+              </li>
+            
+          ))
+        }
+      </ul>
+      <input onChange={(e)=>setValue(e.target.value)}/>
+      <button onClick={createList}>Add</button>
+    </div>
+  )
+}
+export default App
